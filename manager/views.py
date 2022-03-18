@@ -9,7 +9,6 @@ def Admin_lock_user(request, id):
 
   ### lock a specific user not to be able to login again but his account still exist
    
-
     if(is_authorized_admin(request)):
         user = User.objects.get(pk=id)
         lock_user(user)
@@ -23,7 +22,6 @@ def Admin_unlock_user(request, id):
 
     ### unlock a specific user so he can login again
     
-
     if(is_authorized_admin(request)):
         user = User.objects.get(pk=id)
         unlock_user(user)
@@ -32,7 +30,15 @@ def Admin_unlock_user(request, id):
     else:
         return HttpResponseRedirect("redirect path")
         
-        
-        
+       
+ 
+def is_authorized_admin(request):
+
+  ### check if user is authorized admin
+  
+    if(request.user.is_authenticated):
+        if(request.user.is_staff):
+            return True
+    return False    
 
 
