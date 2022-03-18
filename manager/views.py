@@ -11,7 +11,8 @@ def Admin_lock_user(request, id):
    
     if(is_authorized_admin(request)):
         user = User.objects.get(pk=id)
-        lock_user(user)
+        user.is_locked = True
+    	user.save()
         log(request.user.username+" locked " + user.username+".")
         return HttpResponseRedirect("redirect path")
     else:
@@ -24,7 +25,8 @@ def Admin_unlock_user(request, id):
     
     if(is_authorized_admin(request)):
         user = User.objects.get(pk=id)
-        unlock_user(user)
+        user.is_locked = False
+    	user.save()
         log(request.user.username+" unlocked " + user.username+".")
         return HttpResponseRedirect("redirect path")
     else:
@@ -41,4 +43,44 @@ def is_authorized_admin(request):
             return True
     return False    
 
+
+def manager_show_user(request, id):
+
+    ### show information about specific user 
+ 
+    if(is_authorized_admin(request)):
+        user = User.objects.get(pk=id)
+        return render(request, "show_user.html", {"user": user})
+    else:
+        return HttpResponseRedirect("redirect path")
+
+
+def promote_user(request, id):
+
+    ### promote a specific user to become an admin 
+    
+    if(is_authorized_admin(request)):
+        user = User.objects.get(pk=id)
+        user.is_staff = True
+    	user.save()
+        log(request.user.username+" promoted " + user.username+".")
+        return HttpResponseRedirect("redirect path")
+    else:
+        return HttpResponseRedirect("/")
+
+
+def demote_admin(request, id):
+
+    ### demote a specific admin to become a normal user again
+   
+    current_user = request.user
+    if(is_authorized_admin(request)):
+        if(current_user.is_staffuser):
+            user = User.objects.get(pk=id)
+            user.is_staff = False
+            user.save()
+            log(current_user.username+" demoted " + user.username+".")
+        return HttpResponseRedirect("redirect path")
+    else:
+        return HttpResponseRedirect("redirect path")
 
