@@ -18,5 +18,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('gett/', views.gett, name='gett')
+    path('home/', views.landing_page_components, name='home')
 ]

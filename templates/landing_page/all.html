@@ -1,7 +1,13 @@
 
 {% include 'landing_page/navbar.html' %}
-
+<div style="display: flex;">
+   <div style="min-width: 30rem; margin-right: 5rem;">
 {% include 'landing_page/sidebar.html' %}
+</div>
+<div style="display: flex; justify-content: center; align-items: center;">
+{% include 'landing_page/body.html' %}
+</div>
+</div>
 
 {% block content %}
    {% endblock content %}
