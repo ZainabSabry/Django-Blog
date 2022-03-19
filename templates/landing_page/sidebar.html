@@ -68,21 +68,24 @@ input{
 
     <nav class="sidebar card py-2 mb-4">
       <a class="nav-link" href="#"> Categories  </a>
-
+      <ul class="submenu collapse">
     <ol class="list-group list-group-numbered">
+     
       
       {% for categ in categories %}
-
       <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
+        <div class="ms-2 me-auto" >
           <div class="fw-bold">{{ categ.category }}</div>
         </div>
-        <span class="badge bg-primary rounded-pill">Subscribe</span>
+        <button class="badge bg-primary rounded-pill">Subscribe</button>
       </li>
+   
 
       {% endfor %}
+   
 
     </ol>
+  </ul>
     </nav>
     <script>
       document.addEventListener("DOMContentLoaded", function(){
