@@ -84,3 +84,26 @@ def demote_admin(request, id):
     else:
         return HttpResponseRedirect("redirect path")
 
+
+
+
+def posts(request):
+    if(is_authorized_admin(request)):
+        posts = Post.objects.all()
+        categories = Category.objects.all()
+        context = {'posts': posts, 'categories': categories}
+        return render(request, 'redirect path', context)
+    else:
+        return HttpResponseRedirect("redirect path")
+
+
+def post_delete(request, post_id):
+    if(is_authorized_admin(request)):
+        post = Post.objects.get(id=post_id)
+        post.delete()
+        return HttpResponseRedirect('redirect path')
+    else:
+        return HttpResponseRedirect("redirect path")
+
+
+
