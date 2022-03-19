@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Post
+from .models import Category, Post, BlockedWords
 
 
 class InlinePost(admin.StackedInline):
@@ -19,8 +19,17 @@ class CustomPost(admin.ModelAdmin):
     )
     list_display = ('title', 'slug', 'author', 'content', 'publish_date')
     search_fields = ('title', 'slug', 'author')
-    list_filter = ('title', )
+    list_filter = ('title',)
+
+
+class CustomBlockedWords(admin.ModelAdmin):
+    fieldsets = (
+        ['new blocked words', {'fields': ['words']}],
+
+    )
+    search_fields = ('words', )
 
 
 admin.site.register(Category, CustomCategory)
 admin.site.register(Post, CustomPost)
+admin.site.register(BlockedWords, CustomBlockedWords)
