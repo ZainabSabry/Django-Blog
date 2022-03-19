@@ -1,0 +1,73 @@
+{% extends 'landing_page/base.html' %}
+
+{% block content %} 
+<style>
+    .sidebar{
+        width:15%;
+        height:100%;
+    }
+    .sidebar li .submenu{ 
+        list-style: none; 
+        margin: 0; 
+        padding: 0; 
+        padding-left: 1rem; 
+        padding-right: 1rem;
+}
+input{
+  background-color: #f1f1f1;
+  font-family: 'Courier New', Courier, monospace;
+  border: solid #111 3px;
+  border-radius: 10px;
+}
+</style>
+
+<nav class="sidebar card py-2 mb-4">
+            <a class="nav-link" href="#"> Categories  </a>
+            <ul class="submenu collapse">
+                <li><a class="nav-link" href="#">Art <input type="button" value="Subscribe"></a> </li>
+                <li><a class="nav-link" href="#">Music  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Food  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">News  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Celebrities  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Dancing  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Movies  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Series  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Football  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Volleyball  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Basketball  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Tennis  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Handball  <input type="button" value="Subscribe"></a></li>
+                <li><a class="nav-link" href="#">Games  <input type="button" value="Subscribe"></a></li>
+            </ul>
+    </nav>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+  document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
+    
+    element.addEventListener('click', function (e) {
+
+      let nextEl = element.nextElementSibling;
+      let parentEl  = element.parentElement;	
+
+        if(nextEl) {
+            e.preventDefault();	
+            let mycollapse = new bootstrap.Collapse(nextEl);
+            
+            if(nextEl.classList.contains('show')){
+              mycollapse.hide();
+            } else {
+                mycollapse.show();
+                // find other submenus with class=show
+                var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+                // if it exists, then close all of them
+                if(opened_submenu){
+                  new bootstrap.Collapse(opened_submenu);
+                }
+            }
+        }
+    }); // addEventListener
+  }) // forEach
+}); 
+// DOMContentLoaded  end
+    </script>
+  {% endblock content %}

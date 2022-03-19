@@ -15,7 +15,8 @@ Including another URLconf
 """
 
 from django.urls import path
+from . import views
 
 urlpatterns = [
-
+    path('gett/', views.gett, name='gett')
 ]
