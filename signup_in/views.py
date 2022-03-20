@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth.forms import UserCreationForm
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from .forms import CreateUserForm
@@ -35,3 +36,13 @@ def loginPage(request):
             messages.info(request, 'Username or Password is incorrect')
     context = {}
     return render(request, 'signup_in/login.html', context)
+
+
+def logoutUser(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('login')
+    return redirect('home')
+
+
+

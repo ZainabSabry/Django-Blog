@@ -17,14 +17,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
 
-        {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 
         <li class="nav-item">
-          <a class="btn btn-dark" href="../../signup_in/login/">Logout</a>
+          <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-dark">Logout</button>
+          </form>
         </li>
          
+{% else %}
 
-        {% else %}
         
           
           <li class="nav-item active">
@@ -33,8 +36,8 @@
           <li class="nav-item">
             <a class="btn btn-danger" href="../../signup_in/register/">Register</a>
           </li>
+{% endif %}
 
-        {% endif %}
 
       </ul>
       <form class="form-inline my-2 my-lg-0">
