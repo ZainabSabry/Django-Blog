@@ -42,8 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'signup_in',
     'landing_page',
-    'category'
+    'category',
+    'taggit',
+    'better_profanity',
 ]
+
+TAGGIT_CASE_INSENSITIVE = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,6 +132,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = os.path.join(BASE_DIR, 'static/')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type

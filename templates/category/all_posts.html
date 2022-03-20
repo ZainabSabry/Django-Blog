@@ -1,0 +1,51 @@
+{% extends 'category/base.html' %}
+
+{% block title %}OwlBlog{% endblock title %}
+
+
+{% block content %}
+
+    <!-- Posts with a specific tag -->
+     <!-- add this code -->
+    {% if tag %}
+        <h2 class="mb-3">Posts tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+
+    {% for post in posts %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row g-0">
+                <div class="col-md-3">
+                    <div class="ratio ratio-16x9">
+                        <img src="{{post.image.url}}" class="rounded" alt="{{post.title}}" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-md-7 ps-md-3 pt-3 pt-md-0 d-flex flex-column">
+                    
+                        <h2 class="card-title h5">
+                                <a href="{% url 'postDetails' post.id %}">
+                                {{ post.title }}
+                                </a>
+                        </h2>
+                        <div class="text-muted">
+                            <small>
+                                Published {{ post.publish_date.date }} by <strong>{{ post.author }}</strong>
+                            </small>
+                        </div>
+                        
+                        
+                        <p class="card-text  py-2">{{ post.content|safe|striptags|truncatechars:150 }}</p>
+               
+                        <div>
+                            <a href="{% url 'postDetails' post.id %}" class="btn btn-success btn-sm">Read more</a>
+                        </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endfor %}
+    {% include "pagination.html" with page=posts %}
+{% endblock content %}
