@@ -129,4 +129,43 @@ def delete_category(request, cat_id):
         return HttpResponseRedirect('redirect path')
     else:
         return HttpResponseRedirect("redirect path")
+        
+        
+     ###like post function   
+     
+def like_post(request, id):
+    post = get_object_or_404(Post, pk=id)
+    postIsDisliked = post.dislikes.all()
+    post_isliked = post.likes.all()
+    user = request.user
+    if (user not in post_isliked):
+        if(user not in postIsDisliked):
+            post.likes.add(user)
+            post.save()
+    else:
+        post.likes.remove(user)
+        post.save()
+    return HttpResponseRedirect("path redirect"+id)
+
+
+   ### dislike post funtion and to be deleted after 10 dislikes
+   
+def dislike_post(request, id):
+    post = get_object_or_404(Post, pk=id)
+    postIsDisliked = post.dislikes.all()
+    post_isliked = post.likes.all()
+    user = request.user
+    if (user not in postIsDisliked):
+        if(user not in post_isliked):
+            post.dislikes.add(user)
+            post.save()
+    else:
+        post.dislikes.remove(user)
+        post.save()
+
+    total = post.dislikes.count()
+    if(total == 10):
+        post.delete()
+        return HttpResponse("<h1> this post has been deleted </h1>")
+    return HttpResponseRedirect("path redirect"+id)
 
