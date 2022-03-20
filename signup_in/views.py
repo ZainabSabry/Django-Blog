@@ -41,7 +41,7 @@ def loginPage(request):
 def logoutUser(request):
     if request.method == 'POST':
         logout(request)
-        return redirect('login')
+        return redirect('../../landing_page/home/')
     return redirect('home')
 
 

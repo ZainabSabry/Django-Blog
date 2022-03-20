@@ -5,8 +5,7 @@
     <img src="https://via.placeholder.com/1280x720" style="width: 57.7rem;" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
-      <p class="card-text">{{ post.content|safe|striptags|truncatechars:150 }}</p>
-      <a href="../../landing_page/post/" class="btn btn-danger">Read more...</a>
+      <p class="card-text">{{ post.content }}</p>
     </div>
   </div>
 
