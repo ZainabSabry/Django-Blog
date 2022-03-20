@@ -13,7 +13,7 @@ class CustomCategory(admin.ModelAdmin):
 
 class CustomPost(admin.ModelAdmin):
     fieldsets = (
-        ['write a new post', {'fields': ['title', 'slug', 'author']}],
+        ['write a new post', {'fields': ['title', 'slug', 'author','tags']}],
         ['post content', {'fields': ['content', 'image']}],
         ['Publish date', {'fields': ['publish_date']}]
     )

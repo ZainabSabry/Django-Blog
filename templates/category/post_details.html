@@ -40,25 +40,35 @@
 
     <hr/>
         <h3>Add Comment</h3>
-        <form method="post" action="">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-primary">Comment</button>
-        </form>
-        {% with comments.count as total_comments %}
-            <h3 class="mt-5">
-                {{ total_comments }} comment{{ total_comments|pluralize }}
-            </h3>
-        {% endwith %}
 
-        {% if not post.comments.all %}
-            No comments yet
-        
+        {% if user.is_authenticated %}
+
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" class="btn btn-primary">Comment</button>
+            </form>
+
         {% else %}
-            {% for comment in comments %}
-                {% include 'category/comment.html' %}
-            {% endfor %}
+
+            <p style="font-size: 1.2rem; color: red;">To comment , Please Login!</p>
+   
         {% endif %}
+
+            {% with comments.count as total_comments %}
+                <h3 class="mt-5">
+                    {{ total_comments }} comment{{ total_comments|pluralize }}
+                </h3>
+            {% endwith %}
+
+            {% if not post.comments.all %}
+                No comments yet
+            
+            {% else %}
+                {% for comment in comments %}
+                    {% include 'category/comment.html' %}
+                {% endfor %}
+            {% endif %}
 
       
 {% endblock content %}
