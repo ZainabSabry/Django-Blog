@@ -4,8 +4,8 @@
 
 {% for post in posts %}
 
-<div class="card" style="width: 50rem; margin-top: 5rem; box-shadow: gray 0 0.1px 3px;">
-    <img src="{{ post.image.url }}" style="width: 49.9rem;" class="card-img-top" alt="...">
+<div class="card" style=" margin-top: 5rem; box-shadow: gray 0 0.1px 3px;">
+    <img src="{{ post.image.url }}"  class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
       <p class="card-text">{{ post.content|safe|striptags|truncatechars:150 }}</p>
@@ -13,5 +13,5 @@
     </div>
   </div>
 
-  {% endfor %}
+{% endfor %}
   {% endblock content %}
