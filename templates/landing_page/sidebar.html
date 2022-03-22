@@ -16,8 +16,20 @@
             <a href="{% url 'allPosts' categ.id %}">{{ categ.category }}</a>
           </div>
         </div>
-        <button class="badge bg-primary rounded-pill">Subscribe</button>
+        {% if categ.is_subscribed %}
+        {{ categ.is_subscribed }}
+        <form method="post" action="">{% csrf_token %}
+                    <button type="submit" href="{% url 'subscribe' categ.id %}" class="btn btn-danger" style="margin-right: 2rem;">UnSubscribe</button>
+        <!-- <button class="badge bg-primary rounded-pill">Subscribe</button> --></form>
+        {% else %}
+        {{ categ.is_subscribed }}
+        <!-- <button class="badge bg-primary rounded-pill">UnSubscribe</button>
+         --><form method="post" action="">{% csrf_token %}
+                    <button type="submit" href="{% url 'subscribe' categ.id %}" class="btn btn-danger" style="margin-right: 2rem;">Subscribe</button>
+                  </form>
+        {% endif %}
       </li>
+     
    
 
       {% endfor %}
