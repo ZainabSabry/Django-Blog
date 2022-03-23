@@ -12,6 +12,11 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 
+    def is_subscribed(self):
+        return False
+    is_subscribed.boolean = True
+    is_subscribed.short_description = "Subscription"
+
 
 #Post
 class Post(models.Model):

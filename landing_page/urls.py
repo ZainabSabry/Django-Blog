@@ -19,6 +19,6 @@ from . import views
 
 urlpatterns = [
     path('home/', views.landing_page_components, name='home'),
-    path('post/', views.post, name='post')
-    
+    path('post/', views.post, name='post'),
+    path('subscribe/<cat>', views.sub, name='subscribe'),
 ]

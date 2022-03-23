@@ -8,6 +8,10 @@ class InlinePost(admin.StackedInline):
 
 
 class CustomCategory(admin.ModelAdmin):
+    fieldsets=(
+        ['Category_info',{'fields': ['category','is_subscribed']}],
+    )
+    list_display=('category','is_subscribed')
     inlines = [InlinePost]
 
 
