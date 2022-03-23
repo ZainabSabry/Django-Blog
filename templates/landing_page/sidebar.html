@@ -2,21 +2,23 @@
 
 {% block content %} 
 
-
-    <nav class="sidebar card py-2 fixed-left" style="margin-top: 5rem;">
-      <a class="nav-link" href="#"> Categories  </a>
-      <ul class="submenu collapse">
-    <ol class="list-group list-group-numbered">
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Categories</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ol class="list-group">
      
       
       {% for categ in categories %}
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto" >
           <div class="fw-bold">
-            <a href="{% url 'allPosts' categ.id %}">{{ categ.category }}</a>
+            <a href="{% url 'allPosts' categ.id %}" class="btn btn-warning" style="text-decoration: none;">{{ categ.category }}</a>
           </div>
         </div>
-        <button class="badge bg-primary rounded-pill">Subscribe</button>
+        <button class="btn btn-danger">Subscribe</button>
       </li>
    
 
@@ -24,38 +26,12 @@
    
 
     </ol>
-  </ul>
-    </nav>
-    <script>
-      document.addEventListener("DOMContentLoaded", function(){
-document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
-  
-  element.addEventListener('click', function (e) {
+  </div>
+</div>
+</div>
 
-    let nextEl = element.nextElementSibling;
-    let parentEl  = element.parentElement;	
 
-      if(nextEl) {
-          e.preventDefault();	
-          let mycollapse = new bootstrap.Collapse(nextEl);
-          
-          if(nextEl.classList.contains('show')){
-            mycollapse.hide();
-          } else {
-              mycollapse.show();
-              // find other submenus with class=show
-              var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
-              // if it exists, then close all of them
-              if(opened_submenu){
-                new bootstrap.Collapse(opened_submenu);
-              }
-          }
-      }
-  }); // addEventListener
-}) // forEach
-}); 
-// DOMContentLoaded  end
-  </script> 
+
 
 
 {% endblock content %} 

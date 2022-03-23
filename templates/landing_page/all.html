@@ -1,22 +1,11 @@
+{% include 'landing_page/navbar.html' %}
 
-<div class="container" style="margin-bottom: 5rem;">
-   <div class="row">
-      <div class="col">
-         {% include 'landing_page/navbar.html' %}
 
-      </div>
+{% include 'landing_page/sidebar.html' %} 
+  
+{% include 'landing_page/body.html' %}
 
-   </div>
-   <div class="row">
-      <div class="col-4">
-         {% include 'landing_page/sidebar.html' %} 
-        </div>
-     <div class="col-8">
-        {% include 'landing_page/body.html' %}
-     </div>
-     
-   </div>
-</div>
+{% include 'landing_page/footer.html' %}
 
 
 {% block content %}

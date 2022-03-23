@@ -14,6 +14,8 @@ from django.urls import reverse_lazy, reverse
 #All posts of a specific category
 def allPosts(request, category=None, tag_slug=None):
     posts = Post.objects.filter(categ=category)
+    categories = Category.objects.all()
+
 
     #Adding Pagination to avoid having all posts in one page
     paginator = Paginator(posts, 5) # 5 posts in each page
@@ -32,13 +34,15 @@ def allPosts(request, category=None, tag_slug=None):
         tag = get_object_or_404(Tag, slug=tag_slug)
         posts = Post.objects.filter(tags__in=[tag])
 
-    context = {'posts': posts, page: 'pages', 'tag': tag}
+    context = {'posts': posts, page: 'pages', 'tag': tag, 'categories': categories}
     return render(request, 'category/all_posts.html', context)
 
 
 #View of a single post
 def postDetails(request, post_id):
     post = Post.objects.get(id=post_id)
+    categories = Category.objects.all()
+
     post_url = request.POST.get('post_url')
 
 
@@ -62,7 +66,7 @@ def postDetails(request, post_id):
         else:
             comment_form = CommentForm()
 
-    context = {'post': post, 'comments': comments, 'comment_form': comment_form}
+    context = {'post': post, 'comments': comments, 'comment_form': comment_form, 'categories': categories}
     return render(request, 'category/post_details.html', context)
 
 
