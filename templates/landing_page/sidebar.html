@@ -15,19 +15,18 @@
       <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto" >
           <div class="fw-bold">
-            <a href="{% url 'allPosts' categ.id %}" class="btn btn-warning" style="text-decoration: none;">{{ categ.category }}</a>
+            <a href="{% url 'allPosts' categ.id %}" class="btn btn-warning" style="text-decoration: none;border-radius: 1rem;">{{ categ.category }}</a>
           </div>
         </div>
         {% if categ.is_subscribed %}
-        {{ categ.is_subscribed }}
         <form method="post" action="">{% csrf_token %}
-                    <button type="submit" href="{% url 'subscribe' categ.id %}" class="btn btn-danger" style="margin-right: 2rem;">UnSubscribe</button>
+                    <button type="submit" href="{% url 'subscribe' categ.id %}" class="btn btn-danger" style="margin-right: 2rem; border-radius: 1rem;">UnSubscribe</button>
         <!-- <button class="badge bg-primary rounded-pill">Subscribe</button> --></form>
         {% else %}
-        {{ categ.is_subscribed }}
+
         <!-- <button class="badge bg-primary rounded-pill">UnSubscribe</button>
          --><form method="post" action="">{% csrf_token %}
-                    <button type="submit" href="{% url 'subscribe' categ.id %}" class="btn btn-danger" style="margin-right: 2rem;">Subscribe</button>
+                    <button type="submit" href="{% url 'subscribe' categ.id %}" class="btn btn-danger" style="margin-right: 2rem; border-radius: 1rem;">Subscribe</button>
                   </form>
         {% endif %}
       </li>

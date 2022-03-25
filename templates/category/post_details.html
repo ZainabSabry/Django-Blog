@@ -46,7 +46,7 @@
             <form method="post" action="">
                 {% csrf_token %}
                 {{ comment_form.as_p }}
-                <button type="submit" class="btn btn-primary">Comment</button>
+                <button type="submit" class="btn btn-danger" style="border-radius: 1rem;">Comment</button>
             </form>
 
         {% else %}

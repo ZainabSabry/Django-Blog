@@ -10,20 +10,20 @@
     {% if tag %}
         <h2 class="mb-3">Posts tagged with "{{ tag.name }}"</h2>
     {% endif %}
-<div class="container">
+<div class="container" >
     {% for post in posts %}
-    <div class="card mb-3">
+    <div class="card mb-3" style="box-shadow: darkgray 0 0.1px 3px; border-radius: 1.5rem;">
         <div class="card-body">
             <div class="row g-0">
                 <div class="col-md-3">
-                    <div class="ratio ratio-16x9">
-                        <img src="{{post.image.url}}" class="rounded" alt="{{post.title}}" style="object-fit: cover;">
+                    <div class="ratio ratio-16x9" style="border-radius: 1.5rem;">
+                        <img src="{{post.image.url}}" class="rounded" alt="{{post.title}}" style="object-fit: cover; box-shadow: darkgray 0 0.1px 3px; ">
                     </div>
                 </div>
                 <div class="col-md-7 ps-md-3 pt-3 pt-md-0 d-flex flex-column">
                     
                         <h2 class="card-title h5">
-                                <a href="{% url 'postDetails' post.id %}">
+                                <a href="{% url 'postDetails' post.id %}" style="text-decoration: none; color: #c34156;">
                                 {{ post.title }}
                                 </a>
                         </h2>
@@ -37,7 +37,7 @@
                         <p class="card-text  py-2">{{ post.content|safe|striptags|truncatechars:150 }}</p>
                
                         <div>
-                            <a href="{% url 'postDetails' post.id %}" class="btn btn-success btn-sm">Read more</a>
+                            <a href="{% url 'postDetails' post.id %}" class="btn btn-warning btn-sm" style="border-radius: 0.8rem;">Read more</a>
                         </div>
                 
                 </div>
