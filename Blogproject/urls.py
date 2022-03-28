@@ -24,7 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup_in/', include('signup_in.urls')),
     path('landing_page/', include('landing_page.urls')),
-    path('', include('category.urls')),
+    path('categ/', include('category.urls')),
+    path('dash/', include('dashboard.urls')),
+
 
 
 

@@ -1,0 +1,39 @@
+{% extends 'dashboard/base.html' %}
+{% block content%}
+<div class="d-flex justify-content-center ">
+                    <h1>Manage Posts</h1>
+</div>
+
+</style>
+<div class="d-flex justify-content-center ">
+
+<table  class ="table table-striped" order="2px">
+    <tr>
+        <th>Title</th>
+        <th>User</th>
+        <th>Created</th>
+        <th>Image</th>
+        <th>Delete Post</th>
+        <th>Edit Post</th>
+
+    </tr>
+    {%for post in all_posts%}
+    <tr>
+        <td>{{post.title}}</td>
+        <td>{{post.user}}</td>
+         <td>{{post.created}}</td>
+        <td>{{post.image}}</td>
+        <td><a class ="btn btn-primary" href="{% url 'editpost' post.id%}">Edit Post</a></td>
+        <td><a class ="btn btn-danger" href="{% url 'deletepost' post.id%}">Delete Post</a></td>
+
+    </tr>
+    {%endfor%}
+</table>
+
+</div>
+        <td><a class ="btn btn-primary" href="{% url 'add-post'%}">Add Post</a></td>
+
+
+
+{% endblock %}
+

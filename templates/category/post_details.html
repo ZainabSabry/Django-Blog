@@ -42,7 +42,7 @@
         <h3>Add Comment</h3>
 
         {% if user.is_authenticated %}
-
+            
             <form method="post" action="">
                 {% csrf_token %}
                 {{ comment_form.as_p }}

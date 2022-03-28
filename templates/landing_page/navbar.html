@@ -16,7 +16,17 @@
   {% if user.is_authenticated %}
       {% if user.is_superuser %}
               <li class="nav-item active" style="margin-right: 1rem;">
-                <a class="btn btn-light mr-sm-2" href="#" style="border-radius: 1.1rem;">Dashboard</a>
+                <div class="dropdown">
+                  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dashboard
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{% url 'all-users' %}">Manage Users</a></li>
+                    <li><a class="dropdown-item" href="{% url 'all-posts' %}">Manage Posts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'all-cats' %}">Manage Categories</a></li>
+                  </ul>
+                </div>
+                <!-- <a class="btn btn-light mr-sm-2" href="#" style="border-radius: 1.1rem;">Dashboard</a> -->
               </li>
               
               <li class="nav-item active">

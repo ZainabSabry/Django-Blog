@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'category',
     'taggit',
     'better_profanity',
+    'dashboard',
+    'crispy_forms',
 ]
 
 TAGGIT_CASE_INSENSITIVE = True
